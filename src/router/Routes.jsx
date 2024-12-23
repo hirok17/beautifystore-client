@@ -15,6 +15,9 @@ import ErrorPage from "../pages/ErrorPage";
 import MyCart from "../pages/Dashboard/MyCart";
 import WishList from "../pages/Dashboard/WishList";
 import ContactUs from "../pages/ContactUs";
+import BuyerRout from "./BuyerRout";
+import AllUser from "../pages/Dashboard/AllUser";
+import AdminRout from "./AdminRout";
 
 const router  =createBrowserRouter([
     {
@@ -66,11 +69,15 @@ const router  =createBrowserRouter([
             },
             {
                 path:'my-cart',
-                element:<PrivetRout><MyCart /></PrivetRout>
+                element:<PrivetRout><BuyerRout><MyCart /></BuyerRout></PrivetRout>
             },
             {
                 path:'wish-list',
-                element:<PrivetRout><WishList /></PrivetRout>
+                element:<PrivetRout><BuyerRout><WishList /></BuyerRout></PrivetRout>
+            },
+            {
+                path:'users',
+                element:<PrivetRout><AdminRout><AllUser /></AdminRout></PrivetRout>
             }
         ]
     }

@@ -15,7 +15,7 @@ const Sidebar = () => {
                     {
                         isAdmin && <>
                             <li className="bg-white w-full px-8 py-4 rounded-lg"><Link to='/dashboard'>Dashboard</Link></li>
-                            <li className="bg-white w-full px-8 py-4 rounded-lg"><Link to='/dashboard/all-users'>All Users</Link></li>
+                            <li className="bg-white w-full px-8 py-4 rounded-lg"><Link to='/dashboard/users'>All Users</Link></li>
                         </>
 
                     }

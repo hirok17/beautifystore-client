@@ -1,8 +1,23 @@
 /* eslint-disable react/prop-types */
 
 import { FaHeart } from "react-icons/fa";
+import useAxiosSecure from "../../Hooks/useAxiosSecure";
+import useUserData from "../../Hooks/useUserData";
+import toast from "react-hot-toast";
 
 const ProductCart = ({product}) => {
+    const axiosSecure =useAxiosSecure();
+    const userData =useUserData();
+    const userEmail =userData?.email;
+
+    const handelWishList= ()=>{
+        axiosSecure.patch('/wishlist', {userEmail, productId:product._id})
+        .then(res=>{
+            if(res.data.modifiedCount > 0){
+                toast.success('added to wishlist');
+            }
+        })
+    }
     const {title, image, category, price} =product;
     return (
         <section>
@@ -21,7 +36,7 @@ const ProductCart = ({product}) => {
                         <button className="btn btn-primary w-full">Add to Cart</button>
                     </div>
                 </div>
-                <FaHeart title="Wishlist" size={20} color="#F97316" className="absolute right-5 top-8 cursor-pointer" />
+                <FaHeart onClick={handelWishList} title="Wishlist" size={20} color="#F97316" className="absolute right-5 top-8 cursor-pointer" />
             </div>
         </section>
     );

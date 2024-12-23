@@ -1,7 +1,7 @@
 import { useState } from "react";
 import useAuth from "../Hooks/useAuth";
 import toast from "react-hot-toast";
-import { useNavigate } from "react-router";
+import { Link, useNavigate } from "react-router";
 import { AiFillGoogleCircle } from "react-icons/ai";
 import useAxiosPublic from "../Hooks/useAxiosPublic";
 
@@ -10,7 +10,7 @@ import useAxiosPublic from "../Hooks/useAxiosPublic";
 const Register = () => {
     const { createUser, googleLogin } = useAuth();
     const navigate = useNavigate();
-    const axiosPublic =useAxiosPublic();
+    const axiosPublic = useAxiosPublic();
 
     const [formData, setFormData] = useState({
         name: '',
@@ -19,7 +19,7 @@ const Register = () => {
         confirmPassword: '',
         role: ''
     });
-    
+
 
     const [error, setError] = useState('');
 
@@ -34,17 +34,17 @@ const Register = () => {
             .then(result => {
                 const googleUser = result.user;
                 console.log(googleUser);
-                const userData={
-                    email:result.user?.email,
-                    role:'buyer',
-                    status:'approved',
-                    wishlist:[]
-                    
+                const userData = {
+                    email: result.user?.email,
+                    role: 'buyer',
+                    status: 'approved',
+                    wishlist: []
+
                 }
                 axiosPublic.post('/users', userData)
-                .then(res=>{
-                    console.log(res.data);
-                })
+                    .then(res => {
+                        console.log(res.data);
+                    })
                 navigate('/');
             })
             .catch(error => {
@@ -54,11 +54,11 @@ const Register = () => {
     // Handle form submission
     const handleSubmit = (e) => {
         e.preventDefault();
-        const email=formData.email;
-        const role=formData.role;
-        const status=role ==='buyer' ?'approved':'pending';
-        const wishlist =[];
-        const userData={email, role, status, wishlist};
+        const email = formData.email;
+        const role = formData.role;
+        const status = role === 'buyer' ? 'approved' : 'pending';
+        const wishlist = [];
+        const userData = { email, role, status, wishlist };
         if (formData.password !== formData.confirmPassword) {
             setError('Passwords do not match.');
         } else if (formData.password.length < 6) {
@@ -68,12 +68,12 @@ const Register = () => {
             createUser(formData.email, formData.password)
                 .then(() => {
                     axiosPublic.post('/users', userData)
-                    .then(res=>{
-                        if(res.data.insertedId){
-                            toast.success('Sign Up success');
-                        }
-                    })
-                   
+                        .then(res => {
+                            if (res.data.insertedId) {
+                                toast.success('Sign Up success');
+                            }
+                        })
+
                     navigate('/');
                 })
                 .catch(error => {
@@ -167,6 +167,12 @@ const Register = () => {
                     </button>
                 </form>
                 <button onClick={googleSignUp} className="btn btn-secondary w-40 mt-5"> <AiFillGoogleCircle className="text-5xl" /></button>
+            </div>
+            <div className="pb-7">
+                <Link to="/login">
+                    <h3 className='text-center text-[#D1A054]'>Already registered? Go to log in</h3>
+                </Link>
+
             </div>
 
         </section>

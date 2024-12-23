@@ -4,8 +4,8 @@ import { useEffect, useState } from "react";
 const Carousel = () => {
     const images = [
           'https://img.lazcdn.com/us/domino/11f171a9-c488-4c45-9607-01975d0175c3_BD-1976-688.jpg_2200x2200q80.jpg',
-          'https://img.lazcdn.com/us/domino/597067ff-0007-41b3-a581-f86c3e1aeb3a_BD-1976-688.jpg_2200x2200q80.jpg',
-          'https://img.lazcdn.com/us/domino/35e96304-0c3f-4c5b-87f2-59b6edeebfc9_BD-1976-688.jpg_2200x2200q80.jpg',
+          'https://woodmart.xtemos.com/makeup/wp-content/uploads/sites/22/2024/10/c2-blg-1.jpg',
+          'https://woodmart.xtemos.com/makeup/wp-content/uploads/sites/22/2024/10/c2-blg-4.jpg',
         ];
   const [currentIndex, setCurrentIndex] = useState(0);
 
@@ -31,7 +31,7 @@ const Carousel = () => {
         <img
           src={images[currentIndex]}
           alt={`Slide ${currentIndex}`}
-          className="w-full"
+          className="w-full h-[300px] object-cover"
         />
       </div>
 

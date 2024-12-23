@@ -3,7 +3,7 @@ import { useNavigate } from "react-router";
 import useAuth from "./useAuth";
 
 export const axiosSecure =axios.create({
-    baseURL:'http://localhost:5000'
+    baseURL:'https://beautifystore-server.vercel.app'
 });
 const useAxiosSecure = () => {
     const navigate =useNavigate();
