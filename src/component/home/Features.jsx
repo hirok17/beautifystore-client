@@ -1,10 +1,12 @@
 import useProducts from "../../Hooks/useProducts";
+import Spinner from "../Loder/Spinner";
 import ProductCart from "../shopPage/ProductCart";
 
 const Features = () => {
-    const [products] =useProducts();
+    const [products, isLoading] =useProducts();
     const items =products.slice(0, 8);
     console.log(items);
+    if(isLoading) return <Spinner></Spinner>
     return (
       <section className="pb-5">
             <h2 className="text-center text-3xl font-bold mt-11 mb-4"> Featured products</h2>
